@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bedriftssamarbeid – Elektrofag VG – Videregående skole</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg:       #0f172a;
+      --color-surface:  #1a2638;
+      --color-accent:   #0891b2;
+      --color-accent-bright: #0ea5e9;
+      --color-warm:     #d97706;
+      --color-text:     #f8fafc;
+      --color-text-muted: #cbd5e1;
+      --color-border:   #1e3a4c;
+      --font-display:   'Sora', sans-serif;
+      --font-body:      'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    /* ─────────────────────────────────────
+       HEADER & NAV
+    ───────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg) 90%, rgba(8, 145, 178, 0.05) 100%);
+      border-bottom: 1px solid var(--color-border);
+      backdrop-filter: blur(8px);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--color-accent-bright);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    nav a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin-left: 28px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--color-accent-bright);
+    }
+
+    @media (max-width: 640px) {
+      nav { display: none; }
+      .header-container { padding: 14px 16px; }
+    }
+
+    /* ─────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px 60px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(8, 145, 178, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.8px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero h1 .accent {
+      color: var(--color-accent-bright);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-bright) 100%);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(8, 145, 178, 0.25);
+    }
+
+    .btn-secondary {
+      background: var(--color-surface);
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-border);
+      border-color: var(--color-accent);
+    }
+
+    /* ─────────────────────────────────────
+       SECTIONS
+    ───────────────────────────────────────── */
+    section {
+      max-width: 1200px;
+      margin: 60px auto 0;
+      padding: 60px 24px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+      margin-bottom: 40px;
+      max-width: 700px;
+    }
+
+    /* ─────────────────────────────────────
+       YRKESMESSE SECTION
+    ───────────────────────────────────────── */
+    .messe-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .messe-grid { grid-template-columns: 1fr; }
+    }
+
+    .messe-info h3 {
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+      color: var(--color-accent-bright);
+    }
+
+    .messe-info p {
+      color: var(--color-text-muted);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .info-list {
+      list-style: none;
+      gap: 12px;
+    }
+
+    .info-list li {
+      padding: 10px 0;
+      padding-left: 28px;
+      position: relative;
+      color: var(--color-text-muted);
+    }
+
+    .info-list li::before {
+      content: '▪';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-size: 1.5rem;
+      line-height: 0.5;
+    }
+    .hero .logo img{
+      max-width: 200px;
+      height: auto;
+
+    }
+
+    /* ─────────────────────────────────────
+       FORM
+    ───────────────────────────────────────── */
+    .form-card {
+      background: linear-gradient(135deg, var(--color-surface) 0%, rgba(8, 145, 178, 0.05) 100%);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 32px;
+      backdrop-filter: blur(8px);
+    }
+
+    .form-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 24px;
+      color: var(--color-text);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--color-text);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--color-border);
+      background: var(--color-bg);
+      color: var(--color-text);
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-group.form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .form-group.form-row { grid-template-columns: 1fr; }
+    }
+
+    .form-submit {
+      margin-top: 28px;
+    }
+
+    .form-submit button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-bright) 100%);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font-body);
+      letter-spacing: 0.02em;
+    }
+
+    .form-submit button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(8, 145, 178, 0.25);
+    }
+
+    .form-submit button:active {
+      transform: translateY(0);
+    }
+
+    .form-status {
+      padding: 14px 16px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      display: none;
+      font-size: 0.95rem;
+    }
+
+    .form-status.success {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid #10b981;
+      color: #86efac;
+      display: block;
+    }
+
+    .form-status.error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid #ef4444;
+      color: #fca5a5;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────
+       UTPLACERINGER SECTION
+    ───────────────────────────────────────── */
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .schedule-card {
+      background: linear-gradient(135deg, var(--color-surface) 0%, rgba(217, 119, 6, 0.05) 100%);
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--color-warm);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .schedule-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      color: var(--color-accent-bright);
+    }
+
+    .schedule-card .level {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .schedule-card ul {
+      list-style: none;
+    }
+
+    .schedule-card li {
+      padding: 8px 0;
+      padding-left: 20px;
+      position: relative;
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+    }
+
+    .schedule-card li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+
+    .schedule-card .period {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .period-label {
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .period-dates {
+      font-size: 1rem;
+      color: var(--color-warm);
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--color-border);
+      padding: 40px 24px;
+      margin-top: 60px;
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content { grid-template-columns: 1fr; text-align: center; }
+    }
+
+    .footer-section h4 {
+      color: var(--color-text);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .footer-section a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-section a:hover {
+      color: var(--color-accent-bright);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--color-border);
+      padding-top: 24px;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+
+    /* ─────────────────────────────────────
+       UTILITIES
+    ───────────────────────────────────────── */
+    .accent-warm { color: var(--color-warm); }
+    .accent-bright { color: var(--color-accent-bright); }
+
+    .highlight {
+      background: linear-gradient(120deg, rgba(8, 145, 178, 0.2) 0%, rgba(217, 119, 6, 0.1) 100%);
+      padding: 24px;
+      border-radius: 8px;
+      border-left: 4px solid var(--color-accent);
+      margin: 24px 0;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-container">
+    <a href="#" class="logo">⚡ Elektro KUBEN VGS ⚡</a>
+    <nav>
+      <a href="#messe">Yrkesmesse</a>
+      <a href="#praktikk">Praksis</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+     <div class="logo">
+      <p><img src="kub.png" alt="logo" ></p>
+  </div>
+    <h1>Samarbeid med oss<br>– <span class="accent">vekst gjennom praksis</span></h1>
+    <p>Finn dine fremtidige fagpersoner i elektrofaget. Vi tilbyr strukturert samarbeid med motiverte elever og praksisscenarier som gir merverdi for begge parter.</p>
+    <div class="hero-cta">
+      <a href="#messe" class="btn btn-primary">✨Meld deg på Elektrotreffet✨</a>
+      <a href="#praktikk" class="btn btn-secondary">Se praksisperioder</a>
+    </div>
+   
+  </div>
+
+</div>
+
+<!-- YRKESMESSE -->
+<section id="messe">
+  <h2 class="section-title">Elektrotreffet på Kuben – møt dine potensielle lærlinger!</h2>
+  <p class="section-subtitle">En årlig arena der bedrifter presenterer seg for motiverte VG1- og VG2/VG3-elever innen elektrofaget.</p>
+
+  <div class="messe-grid">
+    <div class="messe-info">
+      <h3>Når og hvor</h3>
+      <p>Yrkesmessen arrangeres én gang årlig på høsten. Den retter seg mot alle elever som vurderer praksissplasser og fremtidigt arbeidssted.</p>
+      
+      <div class="highlight">
+        <strong>Neste messe:</strong> 10. september 2026, kl. 09:00–12:00<br>
+        <strong>Sted:</strong> Elektroavdelingen, 3.etasje Kuben Videregående skole
+      </div>
+
+      <h3>Hva får din bedrift ut av det?</h3>
+      <ul class="info-list">
+        <li>Direkte kontakt med motiverte elever fra VG1 og VG2/VG3</li>
+        <li>Mulighet til å presentere bedriften og fagområdene dine</li>
+        <li>Første inntrykk av potensielle praksisselever og ansatte</li>
+        <li>Nettverk med andre elektrobedrifter og skolen</li>
+      </ul>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card">
+      <h3>Påmelding til Elektrotreffet</h3>
+      <form id="messeForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div id="formStatus" class="form-status"></div>
+
+        <div class="form-group form-row">
+          <div>
+            <label for="navn">Fornavn</label>
+            <input type="text" id="navn" name="fornavn" required>
+          </div>
+          <div>
+            <label for="etternavn">Etternavn</label>
+            <input type="text" id="etternavn" name="etternavn" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bedrift">Bedriftsnavn</label>
+          <input type="text" id="bedrift" name="bedrift" required>
+        </div>
+
+        <div class="form-group form-row">
+          <div>
+            <label for="epost">E-postadresse</label>
+            <input type="email" id="epost" name="email" required>
+          </div>
+          <div>
+            <label for="tlf">Telefon</label>
+            <input type="tel" id="tlf" name="telefon">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rolle">Din rolle i bedriften</label>
+          <select id="rolle" name="rolle" required>
+            <option value="">– Velg –</option>
+            <option value="Bedriftsleder">Bedriftsleder / Daglig leder</option>
+            <option value="HR-ansvarlig">HR-ansvarlig</option>
+            <option value="Praksis-veileder">Praksismester / veileder</option>
+            <option value="Annen">Annen</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="fag">Fagområde til bedriften</label>
+          <select id="fag" name="fag" required>
+            <option value="">– Velg –</option>
+            <option value="Elenergi">Elenergi</option>
+            <option value="Automasjon">Automasjon</option>
+            <option value="Dataelektronikk">Dataelektronikk</option>
+            <option value="Telekommunikasjonsmontør">Telekommunikasjonsmontør</option>
+            <option value="kvv">Kulde-varme-ventilasjon</option>
+            <option value="Annet">Annet</option>
+          </select>
+        </div>
+
+
+        <div class="form-group">
+          <label for="antall">Antall personer fra bedriften</label>
+          <input type="number" id="antall" name="antall" min="1" value="1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="meldinger">Spørsmål eller meldinger</label>
+          <textarea id="meldinger" name="meldinger" placeholder="Har dere spesielle ønsker eller spørsmål?"></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit">Meld meg på →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- UTPLACERINGER -->
+<section id="praktikk">
+  <h2 class="section-title">Praksis – struktur og tidsplan</h2>
+  <p class="section-subtitle">Utplassering for elever i elektrofaget følger en fast kalender for de fleste linjer og trinn, med noen unntak. Her ser du når vi trenger praksissplasser.</p>
+
+  <div class="schedule-grid">
+    <!-- VG1 -->
+    <div class="schedule-card">
+      <h3>Elektro og datateknologi – VG1</h3>
+      <div class="level">Grunnleggende nivå</div>
+      <p>Introduksjon til elektrofaget, grunnleggende monteringsarbeid, sikkerhet og verktøybruk.</p>
+      
+      <ul>
+        <li>lærer hvordan elektriske systemer fungerer</li>
+        <li>kobling, montering og vedlikehold av elektriske anlegg</li>
+        <li>lærer om yrker og bedrifter gjennom å ha yrkesfaglig fordypning</li>
+      </ul>
+
+      <div class="period">
+        <div class="period-label">Praksis</div>
+        <div class="period-dates">uke 47 - 2026</div>
+        <div class="period-dates">uke 3 og 4  - 2027</div>
+      </div>
+    </div>
+
+    <!-- VG2 Installasjon -->
+    <div class="schedule-card">
+      <h3>Elenergi og EKOM– VG2</h3>
+      <div class="level">Fagspesialisering</div>
+      <p>Dypere kunnskap om installasjon, vedlikehold og kunde­reparasjoner.</p>
+      
+      <ul>
+        <li>Elektriske og elektroniske anlegg og installasjoner</li>
+        <li>Feilsøking og vedlikehold, </li>
+        <li>Maskiner, verktøy og utstyr</li>
+      </ul>
+
+      <div class="period">
+        <div class="period-label">Praksis</div>
+        <div class="period-dates">uke 41 og uke 42  - 2026</div>
+        <div class="period-dates">uke 9 og uke 10  - 2027</div>
+      </div>
+    </div>
+
+    <!-- VG2 Drift -->
+    <div class="schedule-card">
+      <h3>Datateknologi og elektronikk – VG2</h3>
+      <div class="level">Fagspesialisering</div>
+      <p>Vg2 datateknologi og elektronikk handler om elektronisk utstyr og datateknologiske systemer. </p>
+      
+      <ul>
+        <li>Elektronisk utstyr, datateknologi og robotteknologi</li>
+        <li>Maskiner, verktøy og utstyr</li>
+        <li>Praktisk arbeid</li>
+      </ul>
+
+      <div class="period">
+        <div class="period-label">Praksis</div>
+        <div class="period-dates">uke 41 og uke 42  - 2026 </div>
+        <div class="period-dates">uke 9 og uke 10  - 2027 </div>
+      </div>
+    </div>
+  </div>
+<div class="schedule-grid">
+    <!-- VG1 -->
+    <div class="schedule-card">
+      <h3>Kulde-varme-ventilasjon – VG2</h3>
+      <div class="level">Fagspesialisering</div>
+      <p>ventilasjons-, varmepumpe- og kuldeløsninger.</p>
+      
+      <ul>
+        <li> kuldemontering og vedlikehold av kuldetekniske installasjoner.</li>
+        <li>ute- og inneklima og energibesparende tiltak i boliger og næringsbygg. </li>
+      </ul>
+
+      <div class="period">
+        <div class="period-label">Praksis</div>
+        <div class="period-dates">uke 41 og uke 42 - 2026</div>
+        <div class="period-dates">uke 9 og uke 10  - 2027</div>
+      </div>
+    </div>
+
+    <!-- VG2 Installasjon -->
+    <div class="schedule-card">
+      <h3>Automasjon – VG2 og VG3</h3>
+      <div class="level">Fagspesialisering</div>
+      <p>Prosessindustri, mekanisk industri og i bedrifter som bygger, reparerer og vedlikeholder automatiske prosessystemer og maskiner.</p>
+      
+      <ul>
+        <li>montasje, drift og vedlikehold av automatiserte systemer.</li>
+     
+        <li>robot-, styre- og reguleringssystemer i industrielle og automatiserte anlegg</li>
+      </ul>
+
+      <div class="period">
+        <div class="period-label">Praksis</div>
+        <div class="period-dates">VG2: uke 41 og uke 42  - 2026</div>
+        <div class="period-dates">VG2: uke 9 og uke 10  - 2027</div>
+        <div class="period-dates">VG3: uke 48 - 2026</div>
+        <div class="period-dates">VG3: uke 5 og uke 14-16 - 2027</div>
+      </div>
+    </div>
+
+    <!-- VG2 Drift -->
+    <div class="schedule-card">
+      <h3>Dataelektronikk – VG3</h3>
+      <div class="level">Fagspesialisering</div>
+      <p>installere, drifte, halde ved like og reparere elektronisk utstyr, elektroniske installasjonar og infrastruktur.</p>
+      
+      <ul>
+        <li>feilsøke og reparere elektronisk utstyr og apparater</li>
+        <li>installere og sette i drift kommunikasjonsnettverk og datasystemer</li>
+        </ul>
+
+      <div class="period">
+        <div class="period-label">Praksis</div>
+        <div class="period-dates">hver torsdag og fredag fra uke 41 til skoleslutt - fleksibelt </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>For bedriftene:</strong> Vi koordinerer praksis slik at vi ikke overbelaster noen enkeltbedrift. Dere får oversikt om antall elever som trenger plass, når de kommer, og deres faglige nivå. Alle elever er forsikret og følger faste læringsmål.
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <h2 class="section-title">Spørsmål?</h2>
+  <p class="section-subtitle">Ta kontakt direkte med skolen. Vi hjelper gjerne med spørsmål om praksis, Elektrotreffet eller bedriftssamarbeid.</p>
+
+  <div class="schedule-grid">
+    <div class="schedule-card">
+      <h3>Programkoordinator</h3>
+      <p><strong>Navn:</strong> Bent-Einar Bildøy</p>
+      <p><strong>Telefon:</strong> +47 906 16 586</p>
+      <p><strong>E-post:</strong> bent.bildoy@osloskolen.no</p>
+    </div>
+    <div class="schedule-card">
+      <h3>Avdelingsleder</h3>
+      <p><strong>Navn:</strong> Andor Tellefsen</p>
+      <p><strong>Telefon:</strong> +47 482 15 499</p>
+      <p><strong>E-post:</strong> andor.tellefsen@osloskolen.no</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>Om oss</h4>
+      <p>Kuben Videregående skole – Elektrofag VG1, VG2 og VG3. Vi samarbeider med ledende bedrifter for å gi elevene best mulig faglig og praktisk utdanning.</p>
+    </div>
+    <div class="footer-section">
+      <h4>Hurtiglenker</h4>
+      <a href="#messe">Elektrotreffet</a><br>
+      <a href="#praktikk">Praksistider</a><br>
+      <a href="#kontakt">Kontakt oss</a>
+    </div>
+    <div class="footer-section">
+      <h4>Kontakt</h4>
+      <p>Elektroavdelingen<br>
+      Kuben Videregående skole<br>
+      Telefon: +47 23 46 57 00<br>
+      E-post: postmottak.kuben.yrkesarena@osloskolen.no</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Kuben Videregående skole. Alle rettigheter forbeholdt.</p>
+  </div>
+</footer>
+
+<!-- FORM HANDLING -->
+<script>
+  const form = document.getElementById('messeForm');
+  const statusDiv = document.getElementById('formStatus');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sender...';
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        statusDiv.className = 'form-status success';
+        statusDiv.textContent = '✓ Takk for påmeldingen! Vi bekrefter snart via e-post.';
+        form.reset();
+      } else {
+        throw new Error('Noe gikk galt');
+      }
+    } catch (error) {
+      statusDiv.className = 'form-status error';
+      statusDiv.textContent = '✗ Noe gikk galt. Prøv igjen eller kontakt oss direkte.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+</script>
+
+</body>
+</html>
