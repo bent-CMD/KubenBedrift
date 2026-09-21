@@ -602,7 +602,7 @@
             <option value="">– Velg –</option>
             <option value="Bedriftsleder">Bedriftsleder / Daglig leder</option>
             <option value="HR-ansvarlig">HR-ansvarlig</option>
-            <option value="Praksis-veileder">Praksismester / veileder</option>
+            <option value="Praksis-veileder">Lærlingansvarlig/veileder</option>
             <option value="Annen">Annen</option>
           </select>
         </div>
@@ -625,9 +625,14 @@
           <input type="number" id="antall" name="antall" min="1" value="1" required>
         </div>
 
+         <div class="form-group">
+          <label for="elever">Hvor mange elever kan dere ta imot på praksis</label>
+          <input type="number" id="antall" name="antall" min="0" value="1" required>
+        </div>
+
         <div class="form-group">
           <label for="meldinger">Spørsmål eller meldinger</label>
-          <textarea id="meldinger" name="meldinger" placeholder="Har dere spesielle ønsker eller spørsmål?"></textarea>
+          <textarea id="meldinger" name="meldinger" placeholder="Har dere spesielle ønsker eller spørsmål? Hvis bedriften kan ta i mot praksiselever, men ikke har mulighet til å stille på messen, kan man skrive det her"></textarea>
         </div>
 
         <div class="form-submit">
